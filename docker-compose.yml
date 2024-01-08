@@ -1,0 +1,52 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.0.28
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Licenta123!
+      MYSQL_DATABASE: cloudproject
+  auth:
+    depends_on:
+      - mysql
+    build: ./auth
+    ports:
+      - "127.0.0.1:8070:8070"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysql:3306/cloudproject",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "Licenta123!",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+  order:
+    depends_on:
+      - mysql
+    build: ./auth
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysql:3306/cloudproject",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "Licenta123!",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+  product:
+    depends_on:
+      - mysql
+    build: ./auth
+    ports:
+      - "127.0.0.1:8090:8090"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysql:3306/cloudproject",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "Licenta123!",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+

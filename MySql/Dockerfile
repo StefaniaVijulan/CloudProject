@@ -1,0 +1,10 @@
+FROM mysql:8.0.28
+
+ENV MYSQL_ROOT_PASSWORD=Licenta123!
+ENV MYSQL_DATABASE=cloudproject
+
+EXPOSE 3306
+
+CMD ["mysqld"]
+
+
