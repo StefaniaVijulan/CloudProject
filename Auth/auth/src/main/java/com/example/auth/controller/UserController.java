@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     private final UserServiceInt userServiceInt;
@@ -29,6 +30,7 @@ public class UserController {
     @PostMapping("/register")
     public UserResponse registerUser(@RequestBody @Valid UserRequest user) throws Exception {
 
+        System.out.println("Ajungem aici");
         return userServiceInt.registerUser(user);
     }
 

@@ -1,0 +1,42 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center">Product</h2>
+        </div>
+        <div class="col-md-6 offset-md-3 text-center">
+            <button type="button" type="button" class="btn btn-warning" data-toggle="modal" style="text-align: center;" data-target="#exampleModal1">Add product</button>
+            <button type="button" type="button" class="btn btn-success" data-toggle="modal" style="text-align: center;" data-target="#exampleModal">Add category</button>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="row" style="margin: auto;">
+    <div class="col-md-4" *ngFor="let x of productsList">
+        <div class="card mb-4 shadow-5m">
+            <div class="card-body">
+                <p class="card-title">
+                    <b>{{x.titleProduct}}</b>
+                </p>
+                <p class="card-text">
+                    {{x.descriptionProduct}}
+                </p>
+            </div>
+            <div style="border: 2px solid rgb(3, 2, 0); width: 100px; margin: auto; height: 30px;">
+                <p style="text-align: center;"> {{x.priceProduct}} USD </p>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <app-category-forms></app-category-forms>
+</div>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <app-product-forms></app-product-forms>
+</div>

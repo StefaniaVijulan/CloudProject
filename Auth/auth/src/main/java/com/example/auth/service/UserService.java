@@ -8,8 +8,13 @@ import com.example.auth.exception.UnsafeNewPassword;
 import com.example.auth.model.User;
 import com.example.auth.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,9 +22,27 @@ import java.util.List;
 public class UserService implements UserServiceInt{
 
     private final UserRepository userRepository;
-
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    private final String apiUrl = "http://127.0.0.1:8080/order";
+
+    public void  fetchDataFromExternalServer() {
+        RestTemplate restTemplate = new RestTemplate();
+
+        // Make a GET request and parse the response as a List<Order>
+        ResponseEntity<?> response = restTemplate.exchange(
+                apiUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<>() {
+                });
+
+        // Access the response body
+        System.out.println(response.getBody());
+//        new ArrayList<> = response.getBody();
+//    return response.getBody();
     }
 
     public UserResponse loginUser(UserLogin user) {
@@ -60,6 +83,7 @@ public class UserService implements UserServiceInt{
         user1.setPasswordUser(User.getPasswordUser());
         user1.setAddressUser(User.getAddressUser());
         userRepository.save(user1);
+//        fetchDataFromExternalServer();
         UserResponse UserResponse = new UserResponse();
         UserResponse.setEmailUser(User.getEmailUser());
         UserResponse.setFirstNameUser(User.getFirstNameUser());

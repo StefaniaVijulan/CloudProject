@@ -11,6 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class ProductController {
 
     private final ProductServiceInt productServiceInt;
@@ -34,6 +36,7 @@ public class ProductController {
     }
     @GetMapping
     public List<Product> listOfProducts() throws Exception {
+        System.out.println("ccee");
         return productServiceInt.getAllProduct();
     }
 

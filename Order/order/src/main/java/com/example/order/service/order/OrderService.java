@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -76,4 +77,15 @@ public class OrderService implements OrderServiceInt{
     public List<Order> orderList(){
         return  orderRepository.findAll();
     }
+
+//    public List<Order> userOrderList(Integer idUser) {
+//        List<Order> orderList = orderList();
+//        List<Order> userOrderList = new ArrayList<>();
+//        System.out.println(orderList);
+//        for(int i=0; i<orderList.size(); i++){
+//            if(orderList().get(i).getIdOrder() == idUser ){
+//                userOrderList.add(orderList().get(i));
+//            }
+//        }
+//    }
 }

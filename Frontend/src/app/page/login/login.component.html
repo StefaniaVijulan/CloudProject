@@ -1,0 +1,31 @@
+<div class="container" style="margin-top: 2%;">
+    <br>
+    <h1>
+      Login
+    </h1>
+    <form #loginform="ngForm" (ngSubmit)="loginUser()">
+      <br>
+      <small class="alert-danger">{{message}}</small>
+      <div class="form-group">
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"
+          name="email" [(ngModel)]="userLogin.usernameUser" #usernameUser="ngModel">
+      </div>
+      <br>
+  
+      <div class="form-group">
+  
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+          [(ngModel)]="userLogin.passwordUser" #password="ngModel">
+      </div>
+      <br>
+      <div class="text-center">
+        <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-warning"
+          style="text-align: center;">Login</button>
+      </div>
+      <br>
+    </form>
+    <p style="text-align: center;">You don't have an account? <br> <small class="float-right" [routerLink]="['/register']"
+        style="color: goldenrod;cursor:pointer" >Sign Now</small> </p>
+  
+  </div>
+  

@@ -10,6 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/inventory")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class InventoryController {
     private final InventoryServiceInt inventoryServiceInt;
 

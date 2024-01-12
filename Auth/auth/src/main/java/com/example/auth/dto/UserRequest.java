@@ -19,7 +19,6 @@ public class UserRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
-
     @NotNull(message = "First name cannot be null")
     @NotEmpty(message = "First name cannot be empty")
     private String firstNameUser;

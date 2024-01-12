@@ -1,0 +1,36 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #categoryform="ngForm" (ngSubmit)="addCategory()">
+
+            <!--First Name-->
+            <!-- <div class="form-group">
+              <input type="text" class="form-control" placeholder="Enter the category name" name="nameCategory"
+                [(ngModel)]="category.nameCategory" required #nameCategory="ngModel"
+                [class.is-invalid]="nameCategory.invalid && nameCategory.touched">
+              <small class="text-danger" [class.d-none]="nameCategory.valid|| nameCategory.untouched">The name category is required
+                field</small>
+            </div>
+            <br>
+            <div class="text-center">
+              <button [disabled]="categoryform.form.invalid" type="submit" class="btn"
+                style="background-color: goldenrod;">Add</button>
+            </div>
+    -->     
+          </form>
+
+          <div>
+            <div *ngIf="msgDone">
+              <p style="text-align: center;">{{msg}}</p>
+
+            </div> 
+
+          </div>
+    </div>
+</div>
