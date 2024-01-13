@@ -7,7 +7,6 @@ import com.example.product.exception.Custom;
 import com.example.product.model.Category;
 import com.example.product.model.Product;
 import com.example.product.repository.CategoryRepository;
-import com.example.product.repository.InventoryRepository;
 import com.example.product.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,12 +19,10 @@ public class ProductService implements ProductServiceInt {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
-    private final InventoryRepository inventoryRepository;
 
-    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository, InventoryRepository inventoryRepository) {
+    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
-        this.inventoryRepository = inventoryRepository;
     }
 
     public ProductResponse addProduct(ProductRequest product, Integer idCategory) {
@@ -43,9 +40,8 @@ public class ProductService implements ProductServiceInt {
         product2.setTitleProduct(product.getTitleProduct());
         product2.setDescriptionProduct(product.getDescriptionProduct());
         product2.setCategory(category1);
-        product2.setInventory(product.getInventory());
 
-        inventoryRepository.save(product2.getInventory());
+
 
         ProductResponse productResponse = new ProductResponse();
         productResponse.setPriceProduct(product2.getPriceProduct());
@@ -78,9 +74,7 @@ public class ProductService implements ProductServiceInt {
     public String deleteProduct(Integer idProduct){
         Product product1 = productRepository.findById(idProduct).orElseThrow(
                 () -> new RuntimeException("Product with this id is not found"));
-        log.info("Product " + product1.getTitleProduct() + " delete!");
         productRepository.delete(product1);
-
         return "The product was successfully delete";
     }
     public List<Product> getAllProduct(){

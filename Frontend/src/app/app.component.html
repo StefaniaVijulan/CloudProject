@@ -5,8 +5,9 @@
         <a class ="nav-link" *ngIf = "!_registerService.loggedIn()" routerLink="/login" routerLinkActive="active" style="color: black;">Login</a>
         <a class ="nav-link" *ngIf = "!_registerService.loggedIn()" routerLink="/register" routerLinkActive="active" style="color: black;">Register</a>
         <a class="nav-link" style="cursor: pointer" *ngIf = "_registerService.loggedIn()" (click)="_registerService.logoutUser()" style="color: black;">Logout</a>
-        <a class="nav-link" style="cursor: pointer" *ngIf = "_registerService.loggedIn()" routerLink="/profile" style="color: black;">Profile</a>
+        <a class="nav-link" style="cursor: pointer" *ngIf = "_registerService.loggedIn()" routerLink="/order" style="color: black;">Order</a>
         <a class="nav-link" style="cursor: pointer" *ngIf = "_registerService.loggedIn()" routerLink="/product" style="color: black;">Product</a>
+        <a class="nav-link" style="cursor: pointer" *ngIf = "_registerService.loggedIn()" routerLink="/profile" style="color: black;">Profile</a>
     </ul>
   </div>
 </nav>

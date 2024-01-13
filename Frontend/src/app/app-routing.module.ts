@@ -4,6 +4,8 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { LoginComponent } from './page/login/login.component';
 import { RegisterComponent } from './page/register/register.component';
 import { ProductComponent } from './page/product/product/product.component';
+import { OrderComponent } from './page/order/order/order.component';
+import { ProfileComponent } from './page/profile/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path:"product",
     component:ProductComponent,
+  },
+  {
+    path:"order",
+    component:OrderComponent,
+  },
+  {
+    path:"profile",
+    component:ProfileComponent,
   }
 ];
 

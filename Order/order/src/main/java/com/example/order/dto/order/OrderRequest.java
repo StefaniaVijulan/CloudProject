@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.JoinColumn;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -30,5 +33,9 @@ public class OrderRequest {
 
     @NotNull(message = "Voucher cannot be null")
     private Double voucherOrder;
+
+
+    @NotNull(message = "You need a list of products ")
+    private List<Integer> productIds;
 
 }

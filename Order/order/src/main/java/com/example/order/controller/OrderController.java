@@ -11,6 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/order")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class OrderController {
 
     private final OrderServiceInt orderServiceInt;
@@ -22,6 +24,7 @@ public class OrderController {
 
     @PostMapping
     public OrderResponse addOrder(@RequestBody @Valid OrderRequest order, @RequestParam Integer idUser){
+        System.out.println("Ajungem aici");
         return orderServiceInt.addOrder(order, idUser);
     }
 

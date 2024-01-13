@@ -16,7 +16,7 @@ export class AuthService {
       return this._http.post<any>("http://localhost:8070/user/login", user)
   }
   public registerUserFromRemote(user: UserRequest):Observable<any>{
-    console.log(user)
+    (user)
     return this._http.post<any>("http://localhost:8070/user/register", user)
   }
 
@@ -32,5 +32,15 @@ export class AuthService {
 
   getToken(){
     return localStorage.getItem('login')
+  }
+  getUser(){
+    var idUser = localStorage.getItem('idUser')
+    return this._http.get<any>("http://localhost:8070/user?idUser="+idUser)
+
+  }
+  getUserOrders(){
+    var idUser = localStorage.getItem('idUser')
+    return this._http.get<any>("http://localhost:8070/user/allOrders?idUser="+idUser)
+
   }
 }

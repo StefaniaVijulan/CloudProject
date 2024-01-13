@@ -10,6 +10,11 @@ import { RegisterComponent } from './page/register/register.component';
 import { ProductComponent } from './page/product/product/product.component';
 import { CategoryFormsComponent } from './page/product/category-forms/category-forms.component';
 import { ProductFormsComponent } from './page/product/product-forms/product-forms.component';
+import { EditProductComponent } from './page/product/edit-product/edit-product.component';
+import { ProductService } from './service/product.service';
+import { OrderComponent } from './page/order/order/order.component';
+import { CommonModule } from '@angular/common';
+import { ProfileComponent } from './page/profile/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,10 @@ import { ProductFormsComponent } from './page/product/product-forms/product-form
     RegisterComponent,
     ProductComponent,
     CategoryFormsComponent,
-    ProductFormsComponent
+    ProductFormsComponent,
+    EditProductComponent,
+    OrderComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +34,10 @@ import { ProductFormsComponent } from './page/product/product-forms/product-form
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

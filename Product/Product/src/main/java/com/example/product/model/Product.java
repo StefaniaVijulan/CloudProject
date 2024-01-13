@@ -33,25 +33,14 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToOne
-    @JoinColumn(name = "inventory_id")
-    private Inventory inventory;
-
-    @ElementCollection
-    @CollectionTable(name = "product_orders", joinColumns = @JoinColumn(name = "product_id"))
-    @Column(name = "order_id")
-    private List<Long> idOrders;
-
 
     public Product(){}
 
-    public Product(int idProduct, String titleProduct, Double priceProduct, String descriptionProduct, Category category, Inventory inventory, List<Long> idOrders) {
+    public Product(int idProduct, String titleProduct, Double priceProduct, String descriptionProduct, Category category) {
         this.idProduct = idProduct;
         this.titleProduct = titleProduct;
         this.priceProduct = priceProduct;
         this.descriptionProduct = descriptionProduct;
         this.category = category;
-        this.inventory = inventory;
-        this.idOrders = idOrders;
     }
 }

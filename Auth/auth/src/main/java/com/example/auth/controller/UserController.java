@@ -4,9 +4,11 @@ package com.example.auth.controller;
 import com.example.auth.dto.UserLogin;
 import com.example.auth.dto.UserRequest;
 import com.example.auth.dto.UserResponse;
+import com.example.auth.model.User;
 import com.example.auth.service.UserServiceInt;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -51,8 +53,14 @@ public class UserController {
         return userServiceInt.deleteUser(idUser);
     }
 
-//    @GetMapping
-//    public List<Order> getAllOrder(@RequestParam Integer idUser){
-//        return userServiceInt.orderList(idUser);
-//    }
+
+    @GetMapping
+    public User getUser(@RequestParam Integer idUser){
+        return  userServiceInt.getUser(idUser);
+    }
+
+    @GetMapping("/allOrders")
+    public List<Object> getListOfObjects(@RequestParam Integer idUser){
+       return userServiceInt.getListOfObjects(idUser);
+    }
 }

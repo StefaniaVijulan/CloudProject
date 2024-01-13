@@ -19,12 +19,11 @@ export class LoginComponent {
   loginUser(){
     this._service.loginUserFromRemote(this.userLogin).subscribe(
       data => {
-        console.log("Response was received");
         localStorage.setItem('login', "true")
+        localStorage.setItem('idUser', data.idUser)
         this._router.navigate(['/dashboard'])
       },
       error => {
-        console.log("Exception has occured");
         this.message="Wrong email or password, please Retry!";
     }     
     )

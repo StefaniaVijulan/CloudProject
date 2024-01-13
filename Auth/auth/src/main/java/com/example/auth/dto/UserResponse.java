@@ -24,10 +24,15 @@ public class UserResponse {
     @NotEmpty(message = "Email cannot be empty")
     private String emailUser;
 
-    public UserResponse(String firstNameUser, String lastNameUser, String emailUser) {
+    @NotNull(message = "Email cannot be null")
+    @NotEmpty(message = "Email cannot be empty")
+    private Integer idUser;
+
+    public UserResponse(String firstNameUser, String lastNameUser, String emailUser, Integer idUser ) {
         this.firstNameUser = firstNameUser;
         this.lastNameUser = lastNameUser;
         this.emailUser = emailUser;
+        this.idUser = idUser;
     }
 
     public UserResponse() {

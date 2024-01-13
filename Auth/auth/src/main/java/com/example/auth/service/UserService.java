@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -28,7 +29,7 @@ public class UserService implements UserServiceInt{
 
     private final String apiUrl = "http://127.0.0.1:8080/order";
 
-    public void  fetchDataFromExternalServer() {
+    public List<Object>  fetchDataFromExternalServer() {
         RestTemplate restTemplate = new RestTemplate();
 
         // Make a GET request and parse the response as a List<Order>
@@ -41,8 +42,9 @@ public class UserService implements UserServiceInt{
 
         // Access the response body
         System.out.println(response.getBody());
-//        new ArrayList<> = response.getBody();
-//    return response.getBody();
+        List<Object> orderList = (List<Object>) response.getBody();
+
+        return orderList;
     }
 
     public UserResponse loginUser(UserLogin user) {
@@ -59,6 +61,7 @@ public class UserService implements UserServiceInt{
         }
         UserResponse userResponse = new UserResponse();
         userResponse.setEmailUser(user1.getEmailUser());
+        userResponse.setIdUser(user1.getIdUser());
         userResponse.setFirstNameUser(user1.getFirstNameUser());
         userResponse.setLastNameUser(user1.getLastNameUser());
         log.info(userResponse.toString());
@@ -83,9 +86,11 @@ public class UserService implements UserServiceInt{
         user1.setPasswordUser(User.getPasswordUser());
         user1.setAddressUser(User.getAddressUser());
         userRepository.save(user1);
-//        fetchDataFromExternalServer();
+//        fetchDataFromExternalServer();4
+        System.out.println(user1);
         UserResponse UserResponse = new UserResponse();
         UserResponse.setEmailUser(User.getEmailUser());
+        UserResponse.setIdUser(user1.getIdUser());
         UserResponse.setFirstNameUser(User.getFirstNameUser());
         UserResponse.setLastNameUser(User.getLastNameUser());
         log.info("Done creating user");
@@ -140,4 +145,21 @@ public class UserService implements UserServiceInt{
         return "The user was successfully delete";
     }
 
+    public User getUser(Integer idUser){
+        User user1 = userRepository.findById(idUser).orElseThrow(
+                () -> new RuntimeException("User with this id is not found"));
+       return user1;
+    }
+
+    public List<Object> getListOfObjects(Integer idUser){
+        List<Object> listOfOrders = fetchDataFromExternalServer ();
+        List<Object> orders = new ArrayList<>();
+        for(int i=0; i< listOfOrders.size(); i++){
+            Map<String, Object> resultMap = (Map<String, Object>) listOfOrders.get(i);
+            if(idUser == resultMap.get("idUser")){
+                orders.add(listOfOrders.get(i));
+            }
+        }
+        return orders ;
+    }
 }

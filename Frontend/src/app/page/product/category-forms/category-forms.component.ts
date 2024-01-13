@@ -25,9 +25,7 @@ export class CategoryFormsComponent implements OnInit{
   }
 
   addCategory(){
-    this.category
     this._product.addCategory(this.category).subscribe((res)=>{
-      console.log("Add")
       this.msgDone= true
       this.msg = "Done adding this category"
     },

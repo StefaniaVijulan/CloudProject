@@ -32,6 +32,7 @@ public class ProductController {
     }
     @DeleteMapping
     public String deleteProduct(@RequestParam Integer idProduct) {
+        System.out.println("Ajungem aiiiiici");
         return productServiceInt.deleteProduct(idProduct);
     }
     @GetMapping

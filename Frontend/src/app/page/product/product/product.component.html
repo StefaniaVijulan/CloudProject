@@ -1,42 +1,71 @@
 <br>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h2 class="text-center">Product</h2>
-        </div>
-        <div class="col-md-6 offset-md-3 text-center">
-            <button type="button" type="button" class="btn btn-warning" data-toggle="modal" style="text-align: center;" data-target="#exampleModal1">Add product</button>
-            <button type="button" type="button" class="btn btn-success" data-toggle="modal" style="text-align: center;" data-target="#exampleModal">Add category</button>
-        </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="text-center">Product</h2>
     </div>
+    <div class="col-md-6 offset-md-3 text-center">
+      <button type="button" type="button" class="btn" data-toggle="modal"
+        style="text-align: center; margin: 4px; border:5px solid rgb(218, 165, 32);" data-target="#exampleModal1">New
+        product</button>
+      <button type="button" type="button" class="btn"  data-toggle="modal"
+        style="text-align: center; margin: 4px;border: 5px solid rgb(218, 165, 32);" data-target="#exampleModal">New
+        category</button>
+    </div>
+  </div>
 </div>
 
 <br>
 <div class="row" style="margin: auto;">
-    <div class="col-md-4" *ngFor="let x of productsList">
-        <div class="card mb-4 shadow-5m">
-            <div class="card-body">
-                <p class="card-title">
-                    <b>{{x.titleProduct}}</b>
-                </p>
-                <p class="card-text">
-                    {{x.descriptionProduct}}
-                </p>
-            </div>
-            <div style="border: 2px solid rgb(3, 2, 0); width: 100px; margin: auto; height: 30px;">
-                <p style="text-align: center;"> {{x.priceProduct}} USD </p>
-            </div>
-            <br>
-        </div>
+  <div class="col-md-4" *ngFor="let x of productsList">
+    <div class="card mb-4 shadow-5m">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <p class="card-title mb-0 text-center">
+          <b>{{x.titleProduct}}</b>
+        </p>
+        <button class="btn" (click)="deleteProduct(x.idProduct)">
+          <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+            <path
+              d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+          </svg>
+        </button>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          {{x.descriptionProduct}}
+        </p>
+      </div>
+      <div style="border: 2px solid rgb(3, 2, 0); width: 100px; margin: auto; height: 30px;">
+        <p style="text-align: center;"> {{x.priceProduct}} USD </p>
+      </div>
+      <br>
+      <button class="btn" 
+        [id]="'product_' + x.idProduct" 
+        style="text-align: center; margin: 0 auto; width: 120px; background-color:rgb(218, 165, 32);" 
+        [disabled]="isProductDisabled(x.idProduct)"
+        (click)="addProduct(x.idProduct)">
+        Add product
+      </button>
+      <br>
     </div>
+  </div>
 </div>
 
-  <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <app-category-forms></app-category-forms>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <app-category-forms></app-category-forms>
 </div>
 
-  <!-- Modal -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <app-product-forms></app-product-forms>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <app-product-forms></app-product-forms>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <app-edit-product></app-edit-product>
 </div>

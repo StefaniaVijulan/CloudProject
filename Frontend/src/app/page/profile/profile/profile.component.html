@@ -1,0 +1,80 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="text-center">Profile</h2>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin: auto;">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-5m">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <p class="card-title mb-0 text-center">
+          <b>{{user?.firstNameUser}} {{user?.lastNameUser}}</b>
+        </p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <b>Email: </b>{{user?.emailUser}}
+        </p>
+        <p class="card-text">
+            <b>Address: </b>{{user?.addressUser}}
+          </p>
+      </div>
+      <br>
+      <br>
+    </div>
+  <div class="col-md-4"></div>
+
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-center">Orders</h2>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row" style="margin: auto;">
+    <div class="col-md-4" *ngFor="let x of orderList">
+      <div class="card mb-4 shadow-5m">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <p class="card-title mb-0 text-center">
+            <b>Order nr. {{x.idOrder}}</b>
+          </p>
+         
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+           <b>Data:</b> {{x.descriptionProduct}}
+          </p>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+              <b>Price:</b> {{x.priceOrder}}
+            </p>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <b>Tax:</b> {{x.taxPriceOrder}}
+            </p>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <b>Total:</b> {{x.totalPriceOrder}}
+            </p>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+             <b>No of products:</b> {{x.productIds.length}}
+            </p>
+          </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  

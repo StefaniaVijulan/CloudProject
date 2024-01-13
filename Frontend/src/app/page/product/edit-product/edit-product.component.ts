@@ -3,15 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/model/category/category';
 import { Product } from 'src/app/model/product/product';
-import { ProductRequest } from 'src/app/model/product/product-request';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
-  selector: 'app-product-forms',
-  templateUrl: './product-forms.component.html',
-  styleUrls: ['./product-forms.component.css']
+  selector: 'app-edit-product',
+  templateUrl: './edit-product.component.html',
+  styleUrls: ['./edit-product.component.css']
 })
-export class ProductFormsComponent implements OnInit{
+export class EditProductComponent implements OnInit{
 
   public myForm!:FormGroup;
   constructor(private _router: Router, private formBuilder:FormBuilder, private _product: ProductService) { }
@@ -22,10 +21,10 @@ export class ProductFormsComponent implements OnInit{
   ngOnInit(): void {
     this.getAllCategories()
     this.myForm = this.formBuilder.group({
-      titleProduct:["", Validators.required],
-      priceProduct:[0, Validators.required],
-      descriptionProduct:["", Validators.required],
-      category:[0, Validators.required],
+      titleProduct:[this.product.titleProduct, Validators.required],
+      priceProduct:[this.product.priceProduct, Validators.required],
+      descriptionProduct:[this.product.descriptionProduct, Validators.required],
+      category:[this.product.category, Validators.required],
     })
   }
   
@@ -34,6 +33,7 @@ export class ProductFormsComponent implements OnInit{
 
   getAllCategories(){
     this._product.getCategory().subscribe((res)=>{
+      this.categoriesList = res;
     })
   }
   addCategory(){

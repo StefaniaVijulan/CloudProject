@@ -2,7 +2,6 @@ package com.example.product.dto.product;
 
 
 import com.example.product.model.Category;
-import com.example.product.model.Inventory;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,20 +25,11 @@ public class ProductRequest {
 
     private String descriptionProduct;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
 
-    @OneToOne
-    @JoinColumn(name = "inventory_id")
-    private Inventory inventory;
-
-    public ProductRequest(String titleProduct, Double priceProduct, String descriptionProduct, Category category, Inventory inventory) {
+    public ProductRequest(String titleProduct, Double priceProduct, String descriptionProduct) {
         this.titleProduct = titleProduct;
         this.priceProduct = priceProduct;
         this.descriptionProduct = descriptionProduct;
-        this.category = category;
-        this.inventory = inventory;
     }
 
     public ProductRequest() {

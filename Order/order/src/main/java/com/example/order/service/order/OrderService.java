@@ -35,6 +35,7 @@ public class OrderService implements OrderServiceInt{
         order1.setTaxPriceOrder(order.getTaxPriceOrder());
         order1.setTotalPriceOrder(order.getTotalPriceOrder());
         order1.setIdUser(idUser);
+        order1.setProductIds(order.getProductIds());
         orderRepository.save(order1);
 
 //        order.setProducts(productList);
