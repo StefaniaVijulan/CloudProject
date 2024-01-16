@@ -29,7 +29,7 @@ public class Order {
     @NotNull(message = "Price cannot be null")
     private Double taxPriceOrder;
 
-    @Min(value = 5, message = "Min quantity should be at least 5")
+    @NotNull
     private Double totalPriceOrder;
 
     @NotNull(message = "Voucher cannot be null")
@@ -40,7 +40,7 @@ public class Order {
 
     @NotNull(message = "You need a list of products ")
     @ElementCollection
-    @CollectionTable(name = "product_orders", joinColumns = @JoinColumn(name = "order_id"))
+    @CollectionTable(name = "products_orders", joinColumns = @JoinColumn(name = "order_id"))
     private List<Integer> productIds;
 
 

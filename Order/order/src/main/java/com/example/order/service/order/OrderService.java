@@ -27,6 +27,8 @@ public class OrderService implements OrderServiceInt{
     @Override
     public OrderResponse addOrder(OrderRequest order, Integer idUser){
 
+        System.out.println("Ajungem in addOrder");
+        System.out.println(order);
         Order order1 = new Order();
 
         order1.setDateOrder(order.getDateOrder());
@@ -35,9 +37,12 @@ public class OrderService implements OrderServiceInt{
         order1.setTaxPriceOrder(order.getTaxPriceOrder());
         order1.setTotalPriceOrder(order.getTotalPriceOrder());
         order1.setIdUser(idUser);
+        System.out.println(order.getProductIds());
         order1.setProductIds(order.getProductIds());
+        System.out.println("Avem order1");
         orderRepository.save(order1);
 
+        System.out.println("Ajungem aici cu noroc");
 //        order.setProducts(productList);
 
         OrderResponse orderResponse = new OrderResponse();

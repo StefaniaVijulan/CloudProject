@@ -19,6 +19,7 @@ export class LoginComponent {
   loginUser(){
     this._service.loginUserFromRemote(this.userLogin).subscribe(
       data => {
+        console.log(data)
         localStorage.setItem('login', "true")
         localStorage.setItem('idUser', data.idUser)
         this._router.navigate(['/dashboard'])

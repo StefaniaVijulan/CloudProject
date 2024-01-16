@@ -13,6 +13,7 @@ export class OrderService {
 
   addOrder(order: OrderRequest):Observable<any>{
     var idUser = localStorage.getItem('idUser')
+    console.log(order)
     return this._http.post<any>("http://localhost:8080/order?idUser="+ idUser, order)
   }
 }

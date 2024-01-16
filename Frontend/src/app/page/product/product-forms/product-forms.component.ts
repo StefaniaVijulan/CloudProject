@@ -34,6 +34,7 @@ export class ProductFormsComponent implements OnInit{
 
   getAllCategories(){
     this._product.getCategory().subscribe((res)=>{
+      this.categoriesList = res;
     })
   }
   addCategory(){

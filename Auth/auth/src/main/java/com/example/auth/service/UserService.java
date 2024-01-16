@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,24 +28,24 @@ public class UserService implements UserServiceInt{
         this.userRepository = userRepository;
     }
 
-    private final String apiUrl = "http://127.0.0.1:8080/order";
+    private final String apiUrl = "http://order:8080/order";
 
     public List<Object>  fetchDataFromExternalServer() {
-        RestTemplate restTemplate = new RestTemplate();
-
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        RestTemplate restTemplate = new RestTemplate(factory);
         // Make a GET request and parse the response as a List<Order>
-        ResponseEntity<?> response = restTemplate.exchange(
-                apiUrl,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<>() {
-                });
-
+//        ResponseEntity<?> response = restTemplate.exchange(
+//                apiUrl,
+//                HttpMethod.GET,
+//                null,
+//                new ParameterizedTypeReference<>() {
+//                });
+        List<Object> result = restTemplate.getForObject(apiUrl, List.class);
         // Access the response body
-        System.out.println(response.getBody());
-        List<Object> orderList = (List<Object>) response.getBody();
+//        System.out.println(response.getBody());
+//        List<Object> orderList = (List<Object>) response.getBody();
 
-        return orderList;
+        return result;
     }
 
     public UserResponse loginUser(UserLogin user) {
@@ -54,11 +55,17 @@ public class UserService implements UserServiceInt{
         if(username != null && password != null){
             log.info("Se cauta user-ul in baza de date");
             user1 = userRepository.findUserByUsernameUserAndPasswordUser(username, password);
+            log.info(String.valueOf(user1));
+
         }
         if(user1 == null){
             log.error("This user does not exist");
             throw new Custom("This user does not exist");
         }
+        log.info("WTFFF");
+
+        log.info(String.valueOf(user1));
+        log.info(String.valueOf(user1.getIdUser()));
         UserResponse userResponse = new UserResponse();
         userResponse.setEmailUser(user1.getEmailUser());
         userResponse.setIdUser(user1.getIdUser());
