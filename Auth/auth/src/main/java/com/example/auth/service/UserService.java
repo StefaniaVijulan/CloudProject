@@ -8,6 +8,7 @@ import com.example.auth.exception.UnsafeNewPassword;
 import com.example.auth.model.User;
 import com.example.auth.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -22,30 +23,32 @@ import java.util.Map;
 @Service
 @Slf4j
 public class UserService implements UserServiceInt{
+    @Autowired
+    private RestTemplate restTemplate;
 
+    private final String apiUrl = "http://order:8080/order";
     private final UserRepository userRepository;
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    private final String apiUrl = "http://order:8080/order";
-
     public List<Object>  fetchDataFromExternalServer() {
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        RestTemplate restTemplate = new RestTemplate(factory);
+//        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+//        RestTemplate restTemplate = new RestTemplate();
         // Make a GET request and parse the response as a List<Order>
-//        ResponseEntity<?> response = restTemplate.exchange(
-//                apiUrl,
-//                HttpMethod.GET,
-//                null,
-//                new ParameterizedTypeReference<>() {
-//                });
-        List<Object> result = restTemplate.getForObject(apiUrl, List.class);
+        ResponseEntity<?> response = restTemplate.exchange(
+                apiUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<>() {
+                });
+
+//        List<Object> result = restTemplate.getForObject(apiUrl, List.class);
         // Access the response body
 //        System.out.println(response.getBody());
-//        List<Object> orderList = (List<Object>) response.getBody();
+        List<Object> orderList = (List<Object>) response.getBody();
 
-        return result;
+        return orderList;
     }
 
     public UserResponse loginUser(UserLogin user) {
