@@ -48,7 +48,8 @@ public class ProductService implements ProductServiceInt {
         productResponse.setTitleProduct(product2.getTitleProduct());
         productResponse.setDescriptionProduct(product2.getDescriptionProduct());
         productRepository.save(product2);
-        log.error("Product " + product.getTitleProduct() + " add!");
+        log.info("Add product");
+
         return productResponse;
     }
     public ProductResponse editProduct(ProductRequest product){
