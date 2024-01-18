@@ -30,7 +30,7 @@
 
         <br>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Enter the product price" name="descriptionProduct"
+          <input type="text" class="form-control" placeholder="Enter the product description" name="descriptionProduct"
             [(ngModel)]="product.descriptionProduct" required #descriptionProduct="ngModel"
             [class.is-invalid]="descriptionProduct.invalid && descriptionProduct.touched">
           <small class="text-danger" [class.d-none]="descriptionProduct.valid|| descriptionProduct.untouched">The

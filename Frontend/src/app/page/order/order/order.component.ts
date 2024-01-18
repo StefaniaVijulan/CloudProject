@@ -46,6 +46,8 @@ export class OrderComponent implements OnInit{
     order.taxPriceOrder = this.taxPrice;
     order.productIds = this._service.productIds
     this._orderService.addOrder(order).subscribe((res)=>{
+
+      this._service.productIds = [];
       this.orderAdded = true;
     })
   }

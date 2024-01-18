@@ -56,8 +56,9 @@
       <small class="text-danger" [class.d-none]="(cpassword.value ==password.value) || cpassword.untouched">Confirm
         password and Password is required field</small>
     </div>
+    <br>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Enter adress" name="address"
+      <input type="text" class="form-control" placeholder="Enter address" name="address"
         [(ngModel)]="userRequest.addressUser" required #username="ngModel"
       >
     </div>
