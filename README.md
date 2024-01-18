@@ -5,7 +5,7 @@
 Reprezintă o aplicație pentru gestionarea unui magazin online. Această aplicație este compusă din 3 microservicii:
 
 
-:point_right: **Auth**: un microserviciu care este destinat utilizatoriilor. Cu ajutorul acestui microserviciu, utilizatorii se pot întregistra, conecta și deconecta
+:point_right: **Auth**: un microserviciu care este destinat utilizatorilor. Cu ajutorul acestui microserviciu, utilizatorii se pot întregistra, conecta și deconecta
 
 :point_right: **Order**: un microservicu destinat plasării de comenzi de către un utilizator
 
